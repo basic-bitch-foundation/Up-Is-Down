@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=3 uid="uid://unfifu4bwrt2"]
+
+[ext_resource type="Script" uid="uid://rwb17752b68k" path="res://map.gd" id="1_e0an3"]
+[ext_resource type="Texture2D" uid="uid://cafbkpdgg4dmy" path="res://icon.svg" id="1_wijl4"]
+[ext_resource type="PackedScene" uid="uid://dne7x1drp5oma" path="res://main.tscn" id="2_e0an3"]
+[ext_resource type="Script" uid="uid://dst8hjsr53g42" path="res://coins.gd" id="4_p5pve"]
+[ext_resource type="Script" uid="uid://4bqheacgf46m" path="res://canvas_layer.gd" id="5_urblq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wijl4"]
+size = Vector2(187.50418, 299)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7s6e"]
+size = Vector2(127.130684, 168)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0an3"]
+size = Vector2(123, 128.5)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_e0an3")
+
+[node name="ground" type="StaticBody2D" parent="."]
+position = Vector2(2521, 88)
+scale = Vector2(40.148438, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground"]
+position = Vector2(-5.6291103, 285)
+shape = SubResource("RectangleShape2D_wijl4")
+
+[node name="Sprite2D" type="Sprite2D" parent="ground"]
+position = Vector2(14.539791, 263.5)
+scale = Vector2(1.1734773, 1.8984375)
+texture = ExtResource("1_wijl4")
+
+[node name="ceiling" type="StaticBody2D" parent="."]
+position = Vector2(2379, -204)
+scale = Vector2(37.960938, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ceiling"]
+position = Vector2(-0.57954407, -72)
+shape = SubResource("RectangleShape2D_c7s6e")
+
+[node name="Sprite2D" type="Sprite2D" parent="ceiling"]
+position = Vector2(-10.273716, -76.99997)
+scale = Vector2(1.1734773, 1.8984375)
+texture = ExtResource("1_wijl4")
+
+[node name="player" parent="." instance=ExtResource("2_e0an3")]
+position = Vector2(119, -105)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
+offset_left = -1383.0
+offset_top = -1161.0
+offset_right = 2931.0
+offset_bottom = 1061.0
+texture = ExtResource("1_wijl4")
+
+[node name="coins" type="Node2D" parent="."]
+
+[node name="coin1" type="Area2D" parent="coins"]
+position = Vector2(1760, 148)
+script = ExtResource("4_p5pve")
+
+[node name="Sprite2D" type="Sprite2D" parent="coins/coin1"]
+texture = ExtResource("1_wijl4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="coins/coin1"]
+position = Vector2(1.5, -0.25)
+shape = SubResource("RectangleShape2D_e0an3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("5_urblq")
+
+[node name="score" type="Label" parent="CanvasLayer"]
+z_index = 1
+offset_left = 149.0
+offset_top = 115.0
+offset_right = 318.0
+offset_bottom = 271.0
+text = "                  "
