@@ -1,7 +1,1 @@
 extends Node2D
-
-		
-		
-		
-	
-		
