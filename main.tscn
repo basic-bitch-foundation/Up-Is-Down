@@ -1,7 +1,78 @@
-[gd_scene load_steps=4 format=3 uid="uid://dne7x1drp5oma"]
+[gd_scene load_steps=16 format=3 uid="uid://dne7x1drp5oma"]
 
 [ext_resource type="Script" uid="uid://dr0qbd56qunx0" path="res://main.gd" id="1_ig7tw"]
-[ext_resource type="Texture2D" uid="uid://cafbkpdgg4dmy" path="res://icon.svg" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://cdbpteafrycqf" path="res://gravity_sprites/jump/1 (1).png" id="2_272bh"]
+[ext_resource type="Texture2D" uid="uid://cfcn6fxwmwirr" path="res://gravity_sprites/jump/2.png" id="3_5vw27"]
+[ext_resource type="Texture2D" uid="uid://gpyv5vrabngm" path="res://gravity_sprites/jump/3.png" id="4_kek77"]
+[ext_resource type="Texture2D" uid="uid://daujiypdcj226" path="res://gravity_sprites/jump/4.png" id="5_4c57u"]
+[ext_resource type="Texture2D" uid="uid://d2wk1wfui28ad" path="res://gravity_sprites/run/4.png" id="6_4c57u"]
+[ext_resource type="Texture2D" uid="uid://bxd26di7uu3d7" path="res://gravity_sprites/run/1.png" id="6_efxa6"]
+[ext_resource type="Texture2D" uid="uid://dbo3i4in7prxj" path="res://gravity_sprites/run/2.png" id="7_dg77c"]
+[ext_resource type="Texture2D" uid="uid://ccnifohb4rjdh" path="res://gravity_sprites/run/5.png" id="9_efxa6"]
+[ext_resource type="Texture2D" uid="uid://cmkpn8jxpu6jh" path="res://gravity_sprites/run/6.png" id="10_dg77c"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ycdy4"]
+load_path = "res://.godot/imported/1.png-2e5ff2db204e17835b1c24321037271b.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w48qg"]
+load_path = "res://.godot/imported/2.png-82c28563b454d4bdfbfbcc03dcb7f658.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vivmo"]
+load_path = "res://.godot/imported/3.png-47d54b4c1f9b6db68b4feca5ceeb2f05.ctex"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2cqfq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_ycdy4")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_w48qg")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_vivmo")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_272bh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5vw27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kek77")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4c57u")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_dg77c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_efxa6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4c57u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_efxa6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dg77c")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(109, 116)
@@ -9,10 +80,13 @@ size = Vector2(109, 116)
 [node name="Node2D" type="CharacterBody2D"]
 script = ExtResource("1_ig7tw")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
 position = Vector2(-5, 0)
-texture = ExtResource("2_0xm2m")
+sprite_frames = SubResource("SpriteFrames_2cqfq")
+animation = &"run"
+autoplay = "idle"
+frame_progress = 0.25462556
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, -1)
