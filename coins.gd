@@ -1,15 +1,12 @@
+
 extends Area2D
+
+const COIN_VALUE = 10
 
 func _ready():
 	body_entered.connect(_on_body_entered)
-	
-	
-	
-	
-func _on_body_entered(body):
-	
-	
+
+func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
-		get_tree().current_scene.getnode("CanvasLayer")._add_score(1)
-		print("Coin Collected")
+		ScoreManager.add_score(COIN_VALUE)
 		queue_free()

@@ -1,3 +1,6 @@
 res://main.tscn
 res://main.gd
 res://map.tscn
+res://canvas_layer.gd
+res://coins.gd
+res://score_manager.gd
