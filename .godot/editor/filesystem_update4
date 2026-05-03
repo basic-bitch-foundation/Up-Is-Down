@@ -1,6 +1,5 @@
-res://main.tscn
-res://main.gd
 res://map.tscn
+res://dead.gd
+res://spawn_point.gd
+res://win.gd
 res://canvas_layer.gd
-res://coins.gd
-res://score_manager.gd

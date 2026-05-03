@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 150 * 3
+var speed = 150 * 6
 var gravity = 980 * 3
 var gravity_direction = 1  
 var is_flipping = false     
