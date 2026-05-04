@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://unfifu4bwrt2"]
+[gd_scene load_steps=24 format=4 uid="uid://unfifu4bwrt2"]
 
 [ext_resource type="Script" uid="uid://rwb17752b68k" path="res://map.gd" id="1_e0an3"]
 [ext_resource type="PackedScene" uid="uid://dne7x1drp5oma" path="res://main.tscn" id="2_e0an3"]
@@ -7,10 +7,15 @@
 [ext_resource type="Script" uid="uid://dst8hjsr53g42" path="res://coins.gd" id="4_p5pve"]
 [ext_resource type="Texture2D" uid="uid://dca7sm8hktv30" path="res://cookie.png" id="5_71pa8"]
 [ext_resource type="Script" uid="uid://4bqheacgf46m" path="res://canvas_layer.gd" id="5_urblq"]
+[ext_resource type="Texture2D" uid="uid://c2mv1l7kmsao" path="res://0-9/0.png" id="6_0t07s"]
 [ext_resource type="Texture2D" uid="uid://dchhdujinbh5f" path="res://tileset_final.png" id="6_iw27f"]
 [ext_resource type="Script" uid="uid://cia0leq0k750u" path="res://spawn_point.gd" id="9_sb2pt"]
 [ext_resource type="Script" uid="uid://ipyk45wwtj7b" path="res://dead.gd" id="10_0t07s"]
 [ext_resource type="Script" uid="uid://dah85kmwk4pq8" path="res://win.gd" id="11_6qsgm"]
+[ext_resource type="Script" uid="uid://dtdphvcfkevej" path="res://game_over.gd" id="13_6qsgm"]
+[ext_resource type="Texture2D" uid="uid://0x4pjg63qtyn" path="res://score_box.png" id="14_2wwcf"]
+[ext_resource type="Shader" uid="uid://dbhgog7kh08eb" path="res://blur.gdshader" id="14_wbpbn"]
+[ext_resource type="Texture2D" uid="uid://c7068mwkrjovh" path="res://0-9/tap_restart.png" id="15_wbpbn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_05x41"]
 radius = 228.00877
@@ -48,6 +53,11 @@ size = Vector2(22664, 1625)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sb2pt"]
 size = Vector2(1008, 1793)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2wwcf"]
+resource_local_to_scene = true
+shader = ExtResource("14_wbpbn")
+shader_parameter/blur_amount = 8.958000425505
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_e0an3")
@@ -533,18 +543,21 @@ metadata/_edit_lock_ = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("5_urblq")
 
-[node name="score" type="Label" parent="CanvasLayer"]
-modulate = Color(0.96247405, 0.83468974, 0.97207505, 1)
-self_modulate = Color(0.8266627, 0.4970821, 0.7084381, 1)
-top_level = true
-z_index = 1
-offset_left = 168.0
-offset_top = -16.0
-offset_right = 888.0
-offset_bottom = 240.0
-scale = Vector2(0.2, 0.2)
-text = "                  "
-autowrap_mode = 3
+[node name="tens" type="TextureRect" parent="CanvasLayer"]
+offset_left = 88.0
+offset_top = 16.0
+offset_right = 576.0
+offset_bottom = 764.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_0t07s")
+
+[node name="units" type="TextureRect" parent="CanvasLayer"]
+offset_left = 24.000008
+offset_top = 16.0
+offset_right = 512.0
+offset_bottom = 764.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_0t07s")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_71pa8")
@@ -579,7 +592,6 @@ script = ExtResource("9_sb2pt")
 [node name="dead" type="Area2D" parent="."]
 position = Vector2(1128, -2792)
 script = ExtResource("10_0t07s")
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="dead"]
 position = Vector2(9770, -1308)
@@ -600,3 +612,57 @@ script = ExtResource("11_6qsgm")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="win"]
 position = Vector2(20992, -2000.5)
 shape = SubResource("RectangleShape2D_sb2pt")
+
+[node name="game_over" type="CanvasLayer" parent="."]
+layer = 10
+script = ExtResource("13_6qsgm")
+
+[node name="blurbg" type="ColorRect" parent="game_over"]
+show_behind_parent = true
+z_index = -2
+texture_repeat = 1
+material = SubResource("ShaderMaterial_2wwcf")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 824.0
+offset_bottom = 376.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="score" type="TextureRect" parent="game_over"]
+z_index = 6
+offset_left = 336.0
+offset_top = 200.0
+offset_right = 1527.0
+offset_bottom = 738.0
+texture = ExtResource("14_2wwcf")
+
+[node name="tens" type="TextureRect" parent="game_over/score"]
+layout_mode = 0
+offset_left = 592.0
+offset_top = 199.99998
+offset_right = 1080.0
+offset_bottom = 948.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_0t07s")
+
+[node name="units" type="TextureRect" parent="game_over/score"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 199.99998
+offset_right = 904.0
+offset_bottom = 948.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_0t07s")
+
+[node name="restart" type="TextureButton" parent="game_over"]
+z_index = 6
+offset_left = 608.0
+offset_top = 768.0
+offset_right = 1308.0
+offset_bottom = 821.0
+texture_normal = ExtResource("15_wbpbn")

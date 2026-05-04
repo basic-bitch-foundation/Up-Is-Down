@@ -14,7 +14,7 @@ func _ready():
 	var vp = get_viewport().get_visible_rect().size
 	bg_width = vp.x
 
-	# Apply your custom scale directly
+	
 	bg1.scale = bg_scale
 	bg2.scale = bg_scale
 
