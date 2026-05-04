@@ -8,5 +8,6 @@ func _ready():
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
+		
 		ScoreManager.add_score(COIN_VALUE)
 		queue_free()

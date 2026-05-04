@@ -1,7 +1,8 @@
-res://map.tscn
-res://game_over.gd
 res://blur.gdshader
-res://map.gdshader
-res://background.gd
-res://dead.gd
-res://win.gd
+res://menu.gd
+res://menu.tscn
+res://canvas_layer.gd
+res://game_over.gd
+res://coins.gd
+res://main.gd
+res://spawn_point.gd

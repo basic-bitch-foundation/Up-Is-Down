@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var blur_bg = $blurbg         # ColorRect, full screen size
+@onready var blur_bg = $blurbg        
 @onready var digit_tens = $score/tens
 @onready var digit_units = $score/units
 @onready var tap_restart = $restart
