@@ -20,6 +20,8 @@ func _physics_process(delta):
 
 	
 	if Input.is_action_just_pressed("ui_accept"):
+		SoundManager.play_coin()
+		
 		gravity_direction *= -1
 		
 		velocity.y = 0
@@ -35,6 +37,7 @@ func _physics_process(delta):
 
 	
 	if is_flipping:
+		
 		
 		if is_on_floor():
 			

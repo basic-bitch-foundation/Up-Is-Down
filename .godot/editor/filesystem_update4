@@ -1,8 +1,0 @@
-res://blur.gdshader
-res://menu.gd
-res://menu.tscn
-res://canvas_layer.gd
-res://game_over.gd
-res://coins.gd
-res://main.gd
-res://spawn_point.gd

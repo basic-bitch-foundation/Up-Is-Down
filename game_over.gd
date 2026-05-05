@@ -13,6 +13,7 @@ func _ready():
 func show_screen():
 	_update_score(ScoreManager.score)
 	visible = true
+	SoundManager.play_game_over()
 	get_tree().paused = true
 
 func _update_score(value: int):

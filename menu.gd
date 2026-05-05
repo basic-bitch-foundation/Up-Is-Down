@@ -58,7 +58,10 @@ func _physics_process(_delta):
 			body.linear_velocity = current.normalized() * target_speed
 			
 func _on_play_pressed():
+	SoundManager.play_click()
+	await get_tree().create_timer(0.2).timeout
 	get_tree().change_scene_to_file("res://map.tscn")
 
 func _on_info_pressed():
+	SoundManager.play_click()
 	OS.shell_open("https://github.com/basic-bitch-foundation/Up-Is-Down")

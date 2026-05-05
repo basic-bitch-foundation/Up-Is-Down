@@ -11,12 +11,14 @@ config_version=5
 [application]
 
 config/name="up_is_down"
+run/main_scene="uid://8ehf0aofxjpe"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 ScoreManager="*res://score_manager.gd"
+SoundManager="*res://sound_man.gd"
 
 [rendering]
 
