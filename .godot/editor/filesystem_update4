@@ -1,0 +1,6 @@
+res://menu.tscn
+res://blur.gdshader
+res://map.tscn
+res://game_over.gd
+res://main.gd
+res://win.gd
